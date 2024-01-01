@@ -25,6 +25,7 @@ _UOM_MAP: Final = {
 
 
 _CURRENCY_MAP: Final = {
+    "124": "CAD",
     "840": "USD",
 }
 
