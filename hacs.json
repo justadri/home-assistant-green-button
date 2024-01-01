@@ -1,5 +1,5 @@
 {
   "name": "Green Button integration",
-  "homeassistant": "2022.11.1",
+  "homeassistant": "2023.8.0",
   "render_readme": true
 }
