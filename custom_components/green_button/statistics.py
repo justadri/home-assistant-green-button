@@ -88,7 +88,7 @@ T = TypeVar("T")
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _SensorStatRecord:
     timestamp: datetime.datetime
     last_reset: datetime.datetime | None
@@ -118,7 +118,7 @@ class _SensorStatRecord:
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _StatisticSamples:
     prev_sum_before_end: float | None
     samples: list[_SensorStatRecord]
@@ -133,7 +133,7 @@ class _StatisticSamples:
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _MergedIntervalBlock:
     ids: list[str]
     reading_type: model.ReadingType
@@ -546,7 +546,7 @@ class _ComputeUpdatedPeriodStatisticsTask(tasks.RecorderTask):
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _ImportStatisticsTask(tasks.RecorderTask):
     hass: HomeAssistant
     entity: state.GreenButtonEntity
@@ -598,7 +598,7 @@ class _ImportStatisticsTask(tasks.RecorderTask):
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _AdjustStatisticsTask(tasks.RecorderTask):
     _MIN_CHANGE = decimal.Decimal(10) ** -10
 
@@ -654,7 +654,7 @@ class _AdjustStatisticsTask(tasks.RecorderTask):
 
 
 @final
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass
 class _ClearStatisticsTask(tasks.RecorderTask):
     hass: HomeAssistant
     statistic_id: str
