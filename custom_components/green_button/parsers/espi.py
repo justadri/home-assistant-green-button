@@ -190,7 +190,7 @@ class EspiEntry:
         def parser(elem: ET.Element) -> model.IntervalReading:
             return model.IntervalReading(
                 reading_type=reading_type,
-                cost=_parse_child_text(elem, "./espi:cost", int),
+                cost=0, #_parse_child_text(elem, "./espi:cost", int),
                 start=_parse_child_text(
                     elem, "./espi:timePeriod/espi:start", _to_utc_datetime
                 ),
@@ -229,10 +229,8 @@ class EspiEntry:
         """Parse this entry as a ReadingType."""
         return model.ReadingType(
             id=self.find_self_href(),
-            power_of_ten_multiplier=self.parse_child_text(
-                "espi:powerOfTenMultiplier", int
-            ),
-            unit_of_measurement=self.parse_child_text("espi:uom", _UOM_MAP.__getitem__),
+             power_of_ten_multiplier=1,
+            unit_of_measurement="kwh",
             currency=self.parse_child_text("espi:currency", _CURRENCY_MAP.__getitem__),
         )
 
@@ -275,3 +273,13 @@ def parse_xml(value: str) -> list[model.UsagePoint]:
         return GreenButtonFeed(root).to_usage_points()
     except ET.ParseError as ex:
         raise EspiXmlParseError("Invalid XML.") from ex
+
+def main():
+    with open("test.xml", "r") as f:
+        data = f.read()
+    data = parse_xml(data)
+    print(data)
+
+
+if __name__ == '__main__':
+    main()
