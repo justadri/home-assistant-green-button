@@ -156,6 +156,10 @@ class ComponentConfig:
                         multiline=True,
                     )
                 ),
+                vol.Optional(
+                    _ComponentConfigField.COST_CURRENCY,
+                    default=user_input.get(_ComponentConfigField.COST_CURRENCY),
+                ): str,
             }
         )
 
