@@ -1,4 +1,4 @@
-aiohttp~=3.11.14
+aiohttp~=3.12.4
 colorlog~=6.9.0
 homeassistant~=2025.3.4
 #pip>=21.0,<23.2
